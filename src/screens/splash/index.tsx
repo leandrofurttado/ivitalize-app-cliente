@@ -9,7 +9,7 @@ import LoadingSplash from "../../components/loading/loadingSplash/loadingSplash"
 const SplashScreen = () => {
     const { reset, navigate } = useNavigation<NavigationProp<ParamListBase>>();
 
-    const [serviceOn, setServiceOn] = useState<boolean>(false)
+    const [serviceOn, setServiceOn] = useState<boolean>(true)
 
 
     const translateXValue = new Animated.Value(500);
