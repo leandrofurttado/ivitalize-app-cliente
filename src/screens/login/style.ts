@@ -9,7 +9,12 @@ const styles = StyleSheet.create(
     },
     ContainerLogin: {
       flex: 1,
-      flexDirection:'column',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center'
+    },
+    ContainerForm: {
+      width: '90%',
       alignItems: 'center',
       justifyContent: 'center'
     }

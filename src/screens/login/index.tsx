@@ -10,10 +10,18 @@ const Login = () => {
     return (
         <ImageBackground style={styles.Container} source={FUNDO_LOGIN} blurRadius={4}>
             <View style={styles.ContainerLogin}>
-                <Image style={{ width: '70%' }} source={LOGO_IVITALIZE} resizeMode="contain" />
-                <View style={{ width: '100%', alignItems: 'center', justifyContent: 'center' }}>
-                    <Input placeholder="Usuário" />
-                    <Input placeholder="Senha" leftIcon={
+                <Image style={{ width: '80%', alignItems: 'center', justifyContent: 'center' }} source={LOGO_IVITALIZE} resizeMode="contain" />
+                <View style={styles.ContainerForm}>
+                    <Input placeholder="Usuário" leftIcon={
+                        <Icon
+                            name='person-circle-sharp'
+                            size={30}
+                            color='white'
+                        />
+                    } />
+                    <Input placeholder="Senha" 
+                    secureTextEntry={true}
+                    leftIcon={
                         <Icon
                             name='key-outline'
                             size={30}
