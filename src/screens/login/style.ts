@@ -17,7 +17,15 @@ const styles = StyleSheet.create(
       width: '90%',
       alignItems: 'center',
       justifyContent: 'center'
-    }
+    },
+    buttonsContainer: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '100%',
+      marginVertical: 20,
+    },
   }
 )
 

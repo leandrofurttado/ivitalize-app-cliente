@@ -76,7 +76,7 @@ const SplashScreen = () => {
                 </ContainerLogo>
                 <ContainerLoading >
                     {!serviceOn &&
-                        <LoadingSplash size={30} />
+                        <LoadingSplash size={50} />
                     }
                 </ContainerLoading>
             </ContainerSplash>

@@ -41,7 +41,7 @@ const LoadingSplash = ({ size }) => {
           { transform: [{ translateY: bounceInterpolation }] },
         ]}
       >
-        <Ionicons name="fitness-outline" size={size} color="white" />
+        <Ionicons name="md-fitness-sharp" size={size} color="white" />
 
       </Animated.View>
     </View>
