@@ -6,12 +6,13 @@ const styles = StyleSheet.create(
   {
     Container: {
       flex: 1,
+      height: '100%'
     },
     ContainerLogin: {
       flex: 1,
       flexDirection: 'column',
       alignItems: 'center',
-      justifyContent: 'center'
+      justifyContent: 'space-between',
     },
     ContainerForm: {
       width: '90%',
@@ -26,6 +27,11 @@ const styles = StyleSheet.create(
       width: '100%',
       marginVertical: 20,
     },
+    textCopyright: { 
+      color: COLORS.secundary, 
+      fontSize: 14, 
+      fontFamily: FONTS.regular 
+    }
   }
 )
 
