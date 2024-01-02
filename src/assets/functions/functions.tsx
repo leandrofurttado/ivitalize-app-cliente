@@ -7,7 +7,11 @@ export function sizeParse(tamanho: number) {
   return Math.round(PixelRatio.roundToNearestPixel(size));
 }
 
+export function formatCPF(input){
+  const numericInput = input.replace(/\D/g, '');
 
+  return numericInput.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+};
 
 
 // Função para formatar o valor como moeda
