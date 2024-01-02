@@ -9,7 +9,7 @@ import LoadingSplash from "../../components/loading/loadingSplash/loadingSplash"
 const SplashScreen = () => {
     const { reset, navigate } = useNavigation<NavigationProp<ParamListBase>>();
 
-    const [serviceOn, setServiceOn] = useState<boolean>(true)
+    const [serviceOn, setServiceOn] = useState<boolean>(false)
 
 
     const translateXValue = new Animated.Value(500);
@@ -22,31 +22,29 @@ const SplashScreen = () => {
         }).start();
     };
 
-    /*     async function verificaDisponibilidadeServico() {
-            const response = await fetch('https://futcardsbrasil.000webhostapp.com/usuarios/', {
-                method: 'GET',
-            }).catch(() => {
-            }
-            )
-    
-            //Verificação da requisição SUCESSO OU NAO
-            if (!!response) {
-                const data: LoginReturnTypes = await response.json();
-    
-                if (!!data['mensagem']) {
-                    setServiceOn(true);
-                }
-                else {
-                    console.log('VERIFICAR HOST /USUARIOS')
-                }
-    
-            }
-        } */
+    async function verificaDisponibilidadeServico() {
+        const response = await fetch('https://ivitalize-api.onrender.com/api/v1/students/', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }).catch((e) => {
+            console.log(e);
+        });
+
+        if(response['status'] == 200) {
+            setServiceOn(true);
+        }else {
+            console.log('ERRO:: NÃO FOI POSSÍVEL CONECTAR À API.')
+        }
+
+
+    }
 
     useEffect(() => {
         startAnimation();
 
-        //verificaDisponibilidadeServico(); // ao carregar a pagina ele verifica se a API ta on, se não ele não exibe o login
+        verificaDisponibilidadeServico(); // ao carregar a pagina ele verifica se a API ta on, se não ele não exibe o login
 
     }, []);
 

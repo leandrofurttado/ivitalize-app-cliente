@@ -5,6 +5,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SplashScreen from "./src/screens/splash";
 import { useState } from "react";
+import Home from "./src/screens/home";
+import PasswordRecovery from "./src/screens/password_recovery";
 
 /* App.tsx também ficará responsável pelas routers */
 
@@ -31,6 +33,18 @@ const App = () => {
                 <Stack.Screen
                     name="Login"
                     component={Login}
+                    options={{ headerShown: false }}
+                />
+
+                <Stack.Screen
+                    name="Home"
+                    component={Home}
+                    options={{ headerShown: false }}
+                />
+                
+                <Stack.Screen
+                    name="PasswordRecovery"
+                    component={PasswordRecovery}
                     options={{ headerShown: false }}
                 />
             </Stack.Navigator>

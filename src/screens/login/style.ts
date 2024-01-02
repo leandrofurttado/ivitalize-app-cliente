@@ -19,6 +19,11 @@ const styles = StyleSheet.create(
       alignItems: 'center',
       justifyContent: 'center'
     },
+    LogoiVitalize: {
+      width: '80%',
+      alignItems: 'center',
+      justifyContent: 'center'
+    },
     buttonsContainer: {
       flexDirection: 'row',
       flexWrap: 'wrap',
@@ -27,10 +32,32 @@ const styles = StyleSheet.create(
       width: '100%',
       marginVertical: 20,
     },
-    textCopyright: { 
-      color: COLORS.secundary, 
-      fontSize: 14, 
-      fontFamily: FONTS.regular 
+    textCopyright: {
+      color: COLORS.secundary,
+      fontSize: 14,
+      fontFamily: FONTS.regular
+    },
+    EsqueciMinhaSenhaText: {
+      fontFamily: FONTS.regular,
+      fontSize: 18,
+      color: COLORS.secundary
+    },
+    esqueciMinhasenha: {
+      width: '97%',
+      alignItems: 'flex-start',
+      paddingTop: 10
+    },
+    buttonLogin: {
+      backgroundColor: 'black',
+      borderWidth: 2,
+      borderColor: COLORS.primary,
+      borderRadius: 15,
+      padding: 10,
+      gap: 5
+    },
+    inputLogin: {
+      backgroundColor: 'rgba(255, 255, 255, 0.2)', borderColor: COLORS.secundary, borderTopLeftRadius: 15,
+      borderTopRightRadius: 15
     }
   }
 )
