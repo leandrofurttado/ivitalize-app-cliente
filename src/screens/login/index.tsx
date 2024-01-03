@@ -21,7 +21,7 @@ const Login = () => {
     async function login() {
 
         const formData = {
-            user: user,
+            cpf: user,
             password: password
         };
 
@@ -35,29 +35,25 @@ const Login = () => {
 
         try {
             if (response.ok) {
-                // Se a resposta for bem-sucedida (status 200-299), continua o processamento
-                const data = await response.json();
-                console.log('Resposta bem-sucedida:', data);
-                // Faça o que for necessário com os dados da resposta
-            } else {
-                // Se a resposta for um erro (status fora da faixa 200-299), lança uma exceção
-                throw new Error(`Erro na requisição: ${response.status} - ${response.statusText}`);
+                const data = await response.json(); //RETORNO DA API
+
+                if (response && response.status === 200) {
+                    reset({
+                        index: 0,
+                        routes: [{ name: 'Home' }]
+                    });
+                }
+                
+            } 
+            if (response && response.status === 401) {
+                setErrrorMessage('Usuário ou senha inválidos! Tente novamente.')
+            }
+            else {
+                setErrrorMessage(`Ocorreu um erro, tente novamente mais tarde!`);
             }
         } catch (error) {
-            // Captura os erros durante o processamento da resposta
             console.error('Erro ao processar a resposta:', error.message);
         }
-
-
-/*         if (response && response.status === 200) {
-            reset({
-                index: 0,
-                routes: [{ name: 'Home' }]
-            });
-        }
-        if (response && response.status === 401) {
-            setErrrorMessage('Usuário ou senha inválidos! Tente novamente.')
-        } */
 
 
     }
