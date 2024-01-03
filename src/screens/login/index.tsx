@@ -9,6 +9,7 @@ import { NavigationProp, ParamListBase, useNavigation } from "@react-navigation/
 import PasswordRecovery from "../password_recovery";
 import { useEffect, useState } from "react";
 import { formatCPF } from "../../assets/functions/functions";
+import { api_post } from "../../assets/functions/requisicoes";
 
 
 const Login = () => {
@@ -25,15 +26,14 @@ const Login = () => {
             password: password
         };
 
-        const response = await fetch('https://ivitalize-api.onrender.com/api/v1/students/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData)
-        });
+        const response = api_post('https://ivitalize-api.onrender.com/api/v1/students/login', formData);
+        
+        //TODO Verificar o retorno e tratar de acordo.
+        console.log(response);
 
-        try {
+
+
+/*         try {
             if (response.ok) {
                 const data = await response.json(); //RETORNO DA API
 
@@ -53,7 +53,7 @@ const Login = () => {
             }
         } catch (error) {
             console.error('Erro ao processar a resposta:', error.message);
-        }
+        } */
 
 
     }
