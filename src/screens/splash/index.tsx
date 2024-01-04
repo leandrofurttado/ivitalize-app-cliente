@@ -4,12 +4,16 @@ import { NavigationProp, ParamListBase, useNavigation } from "@react-navigation/
 import { ContainerLoading, ContainerLogo, ContainerSplash, Logo, Logo2 } from "./style";
 import { useEffect, useState } from "react";
 import LoadingSplash from "../../components/loading/loadingSplash/loadingSplash";
+import { api_get } from "../../assets/functions/requisicoes";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { KEY_LOGIN_ASYNCSTORAGE } from "../../assets/functions/keys";
 
 
 const SplashScreen = () => {
     const { reset, navigate } = useNavigation<NavigationProp<ParamListBase>>();
 
-    const [serviceOn, setServiceOn] = useState<boolean>(false)
+    const [serviceOn, setServiceOn] = useState<boolean>(false);
+    const [logged, setLogged] = useState({});
 
 
     const translateXValue = new Animated.Value(500);
@@ -22,40 +26,44 @@ const SplashScreen = () => {
         }).start();
     };
 
+    async function verificaLogin() {
+        const logado = await AsyncStorage.getItem(KEY_LOGIN_ASYNCSTORAGE);
+
+        setLogged(logado);
+    }
+
     async function verificaDisponibilidadeServico() {
-        const response = await fetch('https://ivitalize-api.onrender.com/api/v1/students/', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        }).catch((e) => {
-            console.log(e);
-        });
+        try {
+            const response = await api_get('https://ivitalize-api.onrender.com/api/v1/students/');
 
-        if(response['status'] == 200) {
-            setServiceOn(true);
-        }else {
-            console.log('ERRO:: NÃO FOI POSSÍVEL CONECTAR À API.')
+            if (response.status == true) {
+                setServiceOn(true);
+            }
+            else {
+                console.log('ERRO:: NÃO FOI POSSÍVEL CONECTAR À API.')
+            }
+
+        } catch (error) {
+            console.error('Erro durante a splash:', error);
         }
-
-
     }
 
     useEffect(() => {
+        verificaLogin();
         startAnimation();
-
         verificaDisponibilidadeServico(); // ao carregar a pagina ele verifica se a API ta on, se não ele não exibe o login
-
     }, []);
 
     if (serviceOn == true) { // aqui faz a verificação se o serviço está disponível, se estiver ele encaminha para o login.
         setServiceOn(false);
 
         setTimeout(() => {
-            reset({
-                index: 0,
-                routes: [{ name: 'Login' }]
-            });
+
+            if (logged) {
+                navigate('Home');
+            } else {
+                navigate('Login');
+            }
         }, 2500);
     }
 

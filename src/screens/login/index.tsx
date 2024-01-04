@@ -10,6 +10,8 @@ import PasswordRecovery from "../password_recovery";
 import { useEffect, useState } from "react";
 import { formatCPF } from "../../assets/functions/functions";
 import { api_post } from "../../assets/functions/requisicoes";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { KEY_LOGIN_ASYNCSTORAGE } from "../../assets/functions/keys";
 
 
 const Login = () => {
@@ -20,42 +22,33 @@ const Login = () => {
     const [errorMessage, setErrrorMessage] = useState<string>('')
 
     async function login() {
-
         const formData = {
             cpf: user,
             password: password
         };
+        try {
+            const response = await api_post('https://ivitalize-api.onrender.com/api/v1/students/login', formData);
 
-        const response = api_post('https://ivitalize-api.onrender.com/api/v1/students/login', formData);
-        
-        //TODO Verificar o retorno e tratar de acordo.
-        console.log(response);
+            if (response.status == true) {
 
+                const jsonValue = JSON.stringify(response.dados);
+                await AsyncStorage.setItem(KEY_LOGIN_ASYNCSTORAGE, jsonValue);
 
-
-/*         try {
-            if (response.ok) {
-                const data = await response.json(); //RETORNO DA API
-
-                if (response && response.status === 200) {
-                    reset({
-                        index: 0,
-                        routes: [{ name: 'Home' }]
-                    });
-                }
-                
-            } 
-            if (response && response.status === 401) {
-                setErrrorMessage('Usuário ou senha inválidos! Tente novamente.')
+                reset({
+                    index: 0,
+                    routes: [{ name: 'Home' }]
+                });
             }
-            else {
-                setErrrorMessage(`Ocorreu um erro, tente novamente mais tarde!`);
+
+            if (response.status == 401) {
+                setErrrorMessage('CPF ou Senha inválidos!')
+            } else {
+                setErrrorMessage(response.dados);
             }
+
         } catch (error) {
-            console.error('Erro ao processar a resposta:', error.message);
-        } */
-
-
+            console.error('Erro durante o login:', error);
+        }
     }
 
     function forgot_password() {
