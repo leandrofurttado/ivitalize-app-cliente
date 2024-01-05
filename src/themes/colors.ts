@@ -4,6 +4,7 @@ export const COLORS = {
     secundary2: '#a0e1b2',
     secundary3: '#bfebcc',
     secundary4: '#dff5e5',
+    gray_vitalize: '#2C2C2C',
     gray80: '#B1BBC2',
     grayLight: '#D9D9D9',
     red: '#CE3030',

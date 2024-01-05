@@ -5,4 +5,4 @@ export const IMAGE_SPLASH_SCREEN = require('../assets/imgsBackground/splash_scre
 
 export const LOGO_IVITALIZE = require('../assets/img/logo-vitalize-white.png');
 
-export const FUTCARDS_LOGO_BALL = require('../assets/img/futcards_logo_ball.png');
+export const ICON_PADRAO = require('../assets/img/icon-padrao.png');
