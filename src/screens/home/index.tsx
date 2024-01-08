@@ -1,13 +1,22 @@
-import { ImageBackground, Image, View, Text, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
+import { ImageBackground, Image, View, Text, ScrollView, StyleSheet, TouchableOpacity, Platform } from "react-native";
 import { FUNDO_LOGIN, ICON_PADRAO, LOGO_IVITALIZE } from "../../themes/images";
 import styles from "./style";
 import { sizeParse } from "../../assets/functions/functions";
-import { FontAwesome } from '@expo/vector-icons'; 
+import { FontAwesome } from '@expo/vector-icons';
 import { COLORS } from "../../themes/colors";
+import { useState } from "react";
+import { SearchBar } from '@rneui/themed';
 
 
 
 const Home = () => {
+
+    const [search, setSearch] = useState("");
+
+    const updateSearch = (search) => {
+        setSearch(search);
+    };
+
     return (
         <ScrollView contentContainerStyle={styles.container}>
             <View style={styles.containerView}>
@@ -28,6 +37,32 @@ const Home = () => {
                     </TouchableOpacity>
                 </View>
 
+                <View style={styles.view}>
+                    <SearchBar
+                        placeholder="O que você procura?"
+                        onChangeText={updateSearch}
+                        value={search}
+                        containerStyle={{
+                            backgroundColor: 'transparent',
+                            borderBottomColor: 'transparent',
+                            borderTopColor: 'transparent',
+                            borderRadius: 20
+
+                        }}
+                        inputContainerStyle={{
+                            backgroundColor: '#e1e1e1',
+                            borderRadius: 20
+
+                        }}
+                        inputStyle={{
+                            color: 'black',
+                        }}
+                        placeholderTextColor="#888"
+                        searchIcon={{
+                            color: 'black',
+                        }}
+                    />
+                </View>
 
                 <View style={styles.contentContainer2}>
                     <Text style={styles.text}>HELLO WORLD! (HOME)</Text>

@@ -22,9 +22,10 @@ const styles = StyleSheet.create(
       flex: 1,
       width: '100%',
       flexDirection: 'row',
-      alignItems: 'center',
+      alignItems: 'flex-end',
       justifyContent: 'flex-start',
       gap: sizeParse(10),
+      paddingBottom: sizeParse(15)
     },
     contentContainer2: {
       flex: 1,
@@ -76,7 +77,11 @@ const styles = StyleSheet.create(
       width: sizeParse(100),
       height: sizeParse(100),
       borderRadius: sizeParse(100) 
-    }
+    },
+    view: {
+      flex: 1,
+      width: '100%',
+    },
   }
 )
 
