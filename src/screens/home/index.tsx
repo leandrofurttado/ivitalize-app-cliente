@@ -1,5 +1,5 @@
-import { ImageBackground, Image, View, Text, ScrollView, StyleSheet, TouchableOpacity, Platform } from "react-native";
-import { FUNDO_LOGIN, ICON_PADRAO, LOGO_IVITALIZE } from "../../themes/images";
+import { ImageBackground, Image, View, Text, ScrollView, StyleSheet, TouchableOpacity, Platform, FlatList } from "react-native";
+import { FUNDO_LOGIN, ICON_PADRAO, IMAGE_CARD1, IMAGE_CARD2, IMAGE_CARD3, IMAGE_CARD4, IMAGE_CARD5, LOGO_IVITALIZE } from "../../themes/images";
 import styles from "./style";
 import { sizeParse } from "../../assets/functions/functions";
 import { FontAwesome } from '@expo/vector-icons';
@@ -7,7 +7,16 @@ import { COLORS } from "../../themes/colors";
 import { useState } from "react";
 import { SearchBar } from '@rneui/themed';
 
-
+const CardsInfos = ({ title, description, backgroundImage }) => {
+    return (
+        <TouchableOpacity style={styles.cardContainer}>
+          <Text style={styles.cardTitle}>{title}</Text>
+          <ImageBackground style={styles.cardBackground} source={backgroundImage}>
+            <Text style={styles.cardDescription}>{description}</Text>
+          </ImageBackground>
+        </TouchableOpacity>
+    );
+  };
 
 const Home = () => {
 
@@ -16,6 +25,14 @@ const Home = () => {
     const updateSearch = (search) => {
         setSearch(search);
     };
+
+    const data = [
+        { id: '1', title: 'Meus exercícios', description: 'Clique para ver', backgroundCard: IMAGE_CARD1 },
+        { id: '2', title: 'Programação Semanal', description: 'Clique para ver', backgroundCard: IMAGE_CARD2 },
+        { id: '3', title: 'Dieta Programada', description: 'Clique para ver', backgroundCard: IMAGE_CARD3 },
+        { id: '4', title: 'Recursos de Ajuda', description: '', backgroundCard: IMAGE_CARD4 },
+        { id: '5', title: 'Meu Perfil', description: '', backgroundCard: IMAGE_CARD5 },
+    ];
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
@@ -46,13 +63,15 @@ const Home = () => {
                             backgroundColor: 'transparent',
                             borderBottomColor: 'transparent',
                             borderTopColor: 'transparent',
-                            borderRadius: 20
+                            borderRadius: 20,
 
                         }}
                         inputContainerStyle={{
                             backgroundColor: '#e1e1e1',
-                            borderRadius: 20
-
+                            borderRadius: 20,
+                            borderWidth: 2,
+                            borderColor: COLORS.primary,
+                            borderBottomWidth: 2,
                         }}
                         inputStyle={{
                             color: 'black',
@@ -65,7 +84,17 @@ const Home = () => {
                 </View>
 
                 <View style={styles.contentContainer2}>
-                    <Text style={styles.text}>HELLO WORLD! (HOME)</Text>
+                    <Text style={styles.text}>Suas atividades:</Text>
+                    <FlatList
+                        data={data}
+                        horizontal
+                        showsHorizontalScrollIndicator={false}
+                        keyExtractor={(item) => item.id}
+                        renderItem={({ item }) => (
+                            <CardsInfos title={item.title} description={item.description} backgroundImage={item.backgroundCard}/>
+                        )}
+                    />
+
                 </View>
                 <View style={styles.contentContainer3}>
                     <Text style={styles.text}>HELLO WORLD! (HOME)</Text>

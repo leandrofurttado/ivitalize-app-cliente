@@ -25,15 +25,14 @@ const styles = StyleSheet.create(
       alignItems: 'flex-end',
       justifyContent: 'flex-start',
       gap: sizeParse(10),
-      paddingBottom: sizeParse(15)
+      paddingBottom: sizeParse(15),
     },
     contentContainer2: {
-      flex: 1,
       width: '100%',
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'center',
-      paddingHorizontal: sizeParse(15)
+      flexDirection: 'column',
+      alignItems: 'flex-start',
+      justifyContent: 'flex-start',
+      gap: sizeParse(10)
     },
     contentContainer3: {
       flex: 1,
@@ -61,7 +60,7 @@ const styles = StyleSheet.create(
     },
     text: {
       fontFamily: FONTS.bold,
-      color: COLORS.white
+      color: COLORS.primary
     },
     textRegular: {
       fontFamily: FONTS.regular,
@@ -76,11 +75,40 @@ const styles = StyleSheet.create(
       flex: 1,
       width: sizeParse(100),
       height: sizeParse(100),
-      borderRadius: sizeParse(100) 
+      borderRadius: sizeParse(100)
     },
     view: {
-      flex: 1,
       width: '100%',
+      paddingBottom: sizeParse(15)
+    },
+    cardContainer: {
+      width: sizeParse(220),
+      height: sizeParse(220),
+      marginHorizontal: 10,
+      alignItems: 'center',
+      backgroundColor: COLORS.grayLight,
+      borderRadius: sizeParse(15),
+      borderBottomLeftRadius: sizeParse(15),
+      borderBottomRightRadius: sizeParse(15),
+      overflow: 'hidden',
+    },
+    cardTitle: {
+      fontSize: 15,
+      fontFamily: FONTS.bold,
+      color: COLORS.gray_vitalize
+    },
+    cardDescription: {
+      fontSize: 13,
+      fontFamily: FONTS.regular,
+      color: COLORS.white,
+    },
+    cardBackground: {
+      width: '100%',
+      height: '100%',
+      justifyContent: 'space-evenly',
+      alignItems: 'center',
+      borderBottomLeftRadius: sizeParse(15),
+      borderBottomRightRadius: sizeParse(15),
     },
   }
 )
