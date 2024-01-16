@@ -14,8 +14,15 @@ const styles = StyleSheet.create(
       backgroundColor: COLORS.gray_vitalize,
       flexDirection: 'column',
       alignItems: 'center',
-      justifyContent: 'space-between',
-      paddingHorizontal: sizeParse(20)
+      paddingTop: sizeParse(30)
+    },
+    buttonLogin: {
+      backgroundColor: 'black',
+      borderWidth: 2,
+      borderColor: COLORS.primary,
+      borderRadius: 15,
+      padding: 10,
+      gap: 5
     },
   }
 )

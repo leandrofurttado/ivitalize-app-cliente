@@ -7,6 +7,8 @@ export const LOGO_IVITALIZE = require('../assets/img/logo-vitalize-white.png');
 
 export const ICON_PADRAO = require('../assets/img/icon-padrao.png');
 
+export const PERFIL_PADRAO = require('../assets/img/pain.jpg');
+
 
 
 /* IMAGENS CARDS HOME  */
