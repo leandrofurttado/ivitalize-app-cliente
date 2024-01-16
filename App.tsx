@@ -7,6 +7,7 @@ import SplashScreen from "./src/screens/splash";
 import { useState } from "react";
 import Home from "./src/screens/home";
 import PasswordRecovery from "./src/screens/password_recovery";
+import MeuPerfil from "./src/screens/MeuPerfil";
 
 /* App.tsx também ficará responsável pelas routers */
 
@@ -45,6 +46,12 @@ const App = () => {
                 <Stack.Screen
                     name="PasswordRecovery"
                     component={PasswordRecovery}
+                    options={{ headerShown: false }}
+                />
+
+                <Stack.Screen
+                    name="MeuPerfil"
+                    component={MeuPerfil}
                     options={{ headerShown: false }}
                 />
             </Stack.Navigator>

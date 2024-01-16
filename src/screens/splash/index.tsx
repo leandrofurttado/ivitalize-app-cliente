@@ -60,7 +60,10 @@ const SplashScreen = () => {
         setTimeout(() => {
 
             if (logged) {
-                navigate('Home');
+                reset({
+                    index: 0,
+                    routes: [{ name: 'Home' }]
+                });
             } else {
                 navigate('Login');
             }

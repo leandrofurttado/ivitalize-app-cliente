@@ -1,30 +1,38 @@
-import { ImageBackground, Image, View, Text, ScrollView, StyleSheet, TouchableOpacity, Platform, FlatList } from "react-native";
-import { FUNDO_LOGIN, ICON_PADRAO, IMAGE_CARD1, IMAGE_CARD2, IMAGE_CARD3, IMAGE_CARD4, IMAGE_CARD5, LOGO_IVITALIZE } from "../../themes/images";
+import { ImageBackground, Image, View, Text, ScrollView, TouchableOpacity, FlatList } from "react-native";
+import { ICON_PADRAO, IMAGE_CARD1, IMAGE_CARD2, IMAGE_CARD3, IMAGE_CARD4, IMAGE_CARD5 } from "../../themes/images";
 import styles from "./style";
 import { sizeParse } from "../../assets/functions/functions";
 import { FontAwesome } from '@expo/vector-icons';
 import { COLORS } from "../../themes/colors";
 import { useState } from "react";
 import { SearchBar } from '@rneui/themed';
+import { NavigationProp, ParamListBase, useNavigation } from "@react-navigation/native";
 
 const CardsInfos = ({ title, description, backgroundImage }) => {
     return (
-        <TouchableOpacity style={styles.cardContainer}>
-          <Text style={styles.cardTitle}>{title}</Text>
-          <ImageBackground style={styles.cardBackground} source={backgroundImage}>
-            <Text style={styles.cardDescription}>{description}</Text>
-          </ImageBackground>
-        </TouchableOpacity>
+        <View style={styles.cardContainer}>
+            <Text style={styles.cardTitle}>{title}</Text>
+            <ImageBackground style={styles.cardBackground} source={backgroundImage}>
+                <Text style={styles.cardDescription}>{description}</Text>
+            </ImageBackground>
+        </View>
     );
-  };
+};
 
 const Home = () => {
 
+    const { reset, navigate } = useNavigation<NavigationProp<ParamListBase>>();
     const [search, setSearch] = useState("");
 
     const updateSearch = (search) => {
         setSearch(search);
     };
+
+    const handleMeuPerfil = () => {
+        navigate('MeuPerfil');
+    };
+
+
 
     const data = [
         { id: '1', title: 'Meus exercícios', description: 'Clique para ver', backgroundCard: IMAGE_CARD1 },
@@ -33,6 +41,28 @@ const Home = () => {
         { id: '4', title: 'Recursos de Ajuda', description: '', backgroundCard: IMAGE_CARD4 },
         { id: '5', title: 'Meu Perfil', description: '', backgroundCard: IMAGE_CARD5 },
     ];
+
+    const navigateToScreen = (id) => {
+        switch (id) {
+            case '1':
+                navigate('Screen1');
+                break;
+            case '2':
+                navigate('Screen2');
+                break;
+            case '3':
+                navigate('Screen3');
+                break;
+            case '4':
+                navigate('Screen4');
+                break;
+            case '5':
+                navigate('MeuPerfil');
+                break;
+            default:
+                break;
+        }
+    };
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
@@ -49,7 +79,7 @@ const Home = () => {
                         <Text style={styles.textRegular}>Boa noite, <Text style={styles.text}>Leandro!</Text></Text>
                         <Text style={styles.textMotivation}>Just Do It! Come On!</Text>
                     </View>
-                    <TouchableOpacity style={{ width: sizeParse(60), height: sizeParse(60), alignItems: 'center', borderRadius: sizeParse(100), justifyContent: 'center' }}>
+                    <TouchableOpacity style={{ width: sizeParse(60), height: sizeParse(60), alignItems: 'center', borderRadius: sizeParse(100), justifyContent: 'center', borderWidth: 1, borderColor: COLORS.primary }}>
                         <FontAwesome name="bell" size={24} color={COLORS.primary} />
                     </TouchableOpacity>
                 </View>
@@ -91,16 +121,18 @@ const Home = () => {
                         showsHorizontalScrollIndicator={false}
                         keyExtractor={(item) => item.id}
                         renderItem={({ item }) => (
-                            <CardsInfos title={item.title} description={item.description} backgroundImage={item.backgroundCard}/>
+                            <TouchableOpacity onPress={() => navigateToScreen(item.id)}>
+                                <CardsInfos title={item.title} description={item.description} backgroundImage={item.backgroundCard} />
+                            </TouchableOpacity>
                         )}
                     />
 
                 </View>
                 <View style={styles.contentContainer3}>
-                    <Text style={styles.text}>HELLO WORLD! (HOME)</Text>
+                    <Text style={styles.text}></Text>
                 </View>
                 <View style={styles.contentContainer4}>
-                    <Text style={styles.text}>HELLO WORLD! (HOME)</Text>
+                    <Text style={styles.text}></Text>
                 </View>
 
             </View>
